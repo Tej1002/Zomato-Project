@@ -7,7 +7,7 @@ on:
 
 env:
   APP_PORT: 3000
-  IMAGE_NAME: dockerhubamal/zomatoimage
+  IMAGE_NAME: rahamshaik/zomatoimage
   CONTAINER_NAME: gabr1_app
 
 jobs:
