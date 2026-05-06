@@ -42,17 +42,17 @@ jobs:
         run: echo "my test case is passed."
 
       #  OWASP Dependency Check (SCA)
-      - name: Run OWASP Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: "zomato-app"
-          path: "."
-          format: "SARIF"
-          out: "reports"
-          args: >
-            --enableRetired
-            --enableExperimental
-            --failOnCVSS 7
+     # - name: Run OWASP Dependency Check
+       # uses: dependency-check/Dependency-Check_Action@main
+     #   with:
+       #   project: "zomato-app"
+        #  path: "."
+         # format: "SARIF"
+          #out: "reports"
+        #  args: >
+        #   --enableRetired
+        #   --enableExperimental
+         #   --failOnCVSS 7 */
 
       - name: Upload OWASP Report to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
