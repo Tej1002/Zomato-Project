@@ -54,10 +54,10 @@ jobs:
         #   --enableExperimental
          #   --failOnCVSS 7 */
 
-      - name: Upload OWASP Report to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: reports/dependency-check-report.sarif
+     # - name: Upload OWASP Report to GitHub Security
+     #  uses: github/codeql-action/upload-sarif@v3
+     #  with:
+    #     sarif_file: reports/dependency-check-report.sarif
 
       #  Build Docker Image
       - name: Build Docker Image
