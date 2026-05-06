@@ -12,7 +12,7 @@ env:
 
 jobs:
   build-test-package:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     permissions:
       contents: read
@@ -21,12 +21,12 @@ jobs:
     steps:
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 18
           cache: 'npm'
 
       - name: Install Dependencies
@@ -71,7 +71,7 @@ jobs:
       # ...
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@e07451d2e059ed86c2870430ea286b3a9e0bf241
-
+    
       
       #  Scan Filesystem
       - name: Run Trivy FS Scan
@@ -86,12 +86,13 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: '$IMAGE_NAME:${{ github.sha }}'
-          format: 'table'
+          image-ref: "${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          format: 'sarif'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          output: 'trivy-image.sarif'
 
       - name: Upload Trivy Results
         uses: github/codeql-action/upload-sarif@v3
