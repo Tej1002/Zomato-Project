@@ -43,7 +43,7 @@ jobs:
 
       #  OWASP Dependency Check (SCA)
       - name: Run OWASP Dependency Check
-        uses: dependency-check/Dependency-Check_Action@v3
+        uses: dependency-check/Dependency-Check_Action@main
         with:
           project: "zomato-app"
           path: "."
@@ -67,9 +67,12 @@ jobs:
         run: docker tag $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
 
       #  Install Trivy (Pinned version)
+      # ...
       - name: Install Trivy
-        uses: aquasecurity/setup-trivy@v0.2.0
-
+        uses: aquasecurity/setup-trivy@e07451d2e059ed86c2870430ea286b3a9e0bf241
+        with:
+          version: v0.68.2
+      
       #  Scan Filesystem
       - name: Run Trivy FS Scan
         uses: aquasecurity/trivy-action@v0.20.0
